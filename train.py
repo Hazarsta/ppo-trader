@@ -8,7 +8,7 @@ import gymnasium as gym
 from utils.create_dataset import data_split
 from stable_baselines3.common.monitor import Monitor
 from agent.PPO import PPO, FeedForwardNN
-from utils.run_episode import hyperparams_run_gradient, run_trials
+from utils.run_episode import run_trials
 from env.stockEnv import StockEnv
 from stable_baselines3 import PPO as BPPO
 
@@ -77,14 +77,18 @@ if __name__ == "__main__":
 
     env = StockEnv(dataset, **env_configs)
 
-    run_trials(PPO, FeedForwardNN, env, run_save_path, model_save_path, "our_ppo", **ppo_configs)
+    # run_trials(PPO, FeedForwardNN, env, run_save_path, model_save_path, "our_ppo", **ppo_configs)
+    os.makedirs(os.path.join(model_save_path, "sb3_ppo"), exist_ok=True)
 
     for run in range(10):
         env = StockEnv(dataset, **env_configs)
-        env = Monitor(env, run_save_path)
+        monitor_file = os.path.join(run_save_path, f"sb3_ppo_{run}.csv")
+
+        env = Monitor(env, monitor_file)
         model = BPPO('MlpPolicy', env)
         model.learn(total_timesteps=150000, progress_bar=True)
-        os.rename(os.path.join(run_save_path, "monitor.csv"), os.path.join(run_save_path, f"sb3_ppo_{run}.csv"))
-        model.save(model_save_path + f"sb3_ppo/{run}.zip")
+        env.close()
+        model.save(os.path.join(model_save_path, "sb3_ppo", f"{run}.zip"))
+
 
     plot_learning_curves(run_save_path)
