@@ -145,7 +145,7 @@ if __name__ == "__main__":
     ticker_list = [
     'AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DD', 'DIS', 'GS', 'HD', 
     'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK', 'MSFT', 'NKE', 
-    'PFE', 'PG', 'RTX', 'TRV', 'UNH', 'V', 'VZ', 'CVS', 'WMT', 'XOM'
+    'PFE', 'PG', 'RTX', 'TRV', 'UNH', 'V', 'VZ', 'AMZN', 'WMT', 'XOM'
     ]
 
     dataset = create_dataset(start_date, end_date, ticker_list)
