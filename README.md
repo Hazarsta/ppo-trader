@@ -1,3 +1,7 @@
+This repository is based on works by Alexandre Diz Ganito, Vincent Longpré and Igman Talbi. Original repository: https://github.com/VincentLongpre/ppo-trader
+
+ The following is the original README content:
+
 # Reimplementing PPO and Assessing its Performance in Stock Trading Strategies
 
 By [Alexandre Diz Ganito](https://github.com/Dizga), [Vincent Longpré](https://github.com/VincentLongpre) and [Igman Talbi](https://github.com/Iggy1055).
